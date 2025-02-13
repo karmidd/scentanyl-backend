@@ -30,35 +30,35 @@ public class FragranceController {
     public Optional<Fragrance> getFragrance(@PathVariable String brand, @PathVariable String name) {
         return fragranceService.getFragranceByName(name);
     }
-    @GetMapping("/fragrances/{country}")
+    @GetMapping("/fragrances/country/{country}")
     public List<Fragrance> getFragrancesByCountry(@PathVariable String country) {
         return fragranceService.getFragrancesByCountry(country);
     }
-    @GetMapping("/fragrances/{year}")
-    public List<Fragrance> getFragrancesByYear(@PathVariable int year) {
+    @GetMapping("/fragrances/year/{year}")
+    public List<Fragrance> getFragrancesByYear(@PathVariable Integer year) {
         return fragranceService.getFragrancesByYear(year);
     }
-    @GetMapping("/fragrances/{perfumer}")
+    @GetMapping("/fragrances/perfumer/{perfumer}")
     public List<Fragrance> getFragrancesByPerfumer(@PathVariable String perfumer) {
         return fragranceService.getFragrancesByPerfumer(perfumer);
     }
-    @GetMapping("/fragrances/{topNotes}")
+    @GetMapping("/fragrances/top-notes/{topNotes}")
     public List<Fragrance> getFragrancesByTopNotes(@PathVariable String topNotes) {
         return fragranceService.getFragrancesByTopNotes(topNotes);
     }
-    @GetMapping("/fragrances/{middleNotes}")
+    @GetMapping("/fragrances/middle-notes/{middleNotes}")
     public List<Fragrance> getFragrancesByMiddleNotes(@PathVariable String middleNotes) {
         return fragranceService.getFragrancesByMiddleNotes(middleNotes);
     }
-    @GetMapping("/fragrances/{baseNotes}")
+    @GetMapping("/fragrances/base-notes/{baseNotes}")
     public List<Fragrance> getFragrancesByBaseNotes(@PathVariable String baseNotes) {
         return fragranceService.getFragrancesByBaseNotes(baseNotes);
     }
-    @GetMapping("/fragrances/{gender}")
+    @GetMapping("/fragrances/gender/{gender}")
     public List<Fragrance> getFragrancesByGender(@PathVariable String gender) {
         return fragranceService.getFragrancesByGender(gender);
     }
-    @GetMapping("/fragrances/{mainAccord}")
+    @GetMapping("/fragrances/main-accord/{mainAccord}")
     public List<Fragrance> getFragrancesByMainAccord(@PathVariable String mainAccord) {
         return fragranceService.getFragrancesByMainAccord(mainAccord);
     }
