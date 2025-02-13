@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -53,5 +54,11 @@ public class FragranceService {
     }
     public List<Fragrance> getFragrancesByYear(Integer year) {
         return fragranceRepository.findAllByYear(year);
+    }
+    public List<String> getDistinctBrands(){
+        return fragranceRepository.findAllDistinctBrands();
+    }
+    public Optional<Fragrance> getFragranceByName(String fragrance_name) {
+        return fragranceRepository.findByFragranceName(fragrance_name);
     }
 }

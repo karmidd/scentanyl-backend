@@ -1,6 +1,7 @@
 package com.snyl.scentanyl.fragrance;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -8,9 +9,8 @@ import java.util.Optional;
 
 @Repository
 public interface FragranceRepository extends JpaRepository<Fragrance, String> {
-    void deleteByUrl(String url);
     Optional<Fragrance> findByUrl(String url);
-    Optional<Fragrance> findByBrand(String brand);
+    Optional<Fragrance> findByFragranceName(String fragranceName);
     List<Fragrance> findAllByFragranceName(String fragranceName);
     List<Fragrance> findAllByBrand(String brand);
     List<Fragrance> findAllByGender(String gender);
@@ -26,4 +26,6 @@ public interface FragranceRepository extends JpaRepository<Fragrance, String> {
     List<Fragrance> findAllByMainaccord5(String mainaccord5);
     List<Fragrance> findAllByCountry(String country);
     List<Fragrance> findAllByYear(Integer year);
+    @Query("SELECT DISTINCT f.brand FROM Fragrance f")
+    List<String> findAllDistinctBrands();
 }
