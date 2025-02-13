@@ -3,9 +3,7 @@ package com.snyl.scentanyl.fragrance;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -60,5 +58,33 @@ public class FragranceService {
     }
     public Optional<Fragrance> getFragranceByName(String fragrance_name) {
         return fragranceRepository.findByFragranceName(fragrance_name);
+    }
+    public List<String> getDistinctCountries(){
+        return fragranceRepository.findAllDistinctCountries();
+    }
+    public List<String> getDistinctPerfumers(){
+        Set<String> perfumers = new HashSet<>();
+        perfumers.addAll(fragranceRepository.findAllDistinctPerfumer1());
+        perfumers.addAll(fragranceRepository.findAllDistinctPerfumer2());
+        return List.copyOf(perfumers);
+    }
+    public List<String> getDistinctNotes(){
+        Set<String> notes = new HashSet<>();
+        notes.addAll(fragranceRepository.findAllDistinctTopNotes());
+        notes.addAll(fragranceRepository.findAllDistinctMiddleNotes());
+        notes.addAll(fragranceRepository.findAllDistinctBaseNotes());
+        notes = notes.stream()
+                .flatMap(s -> Arrays.stream(s.split(", ")))
+                .collect(Collectors.toSet());
+        return List.copyOf(notes);
+    }
+    public List<String> getDistinctMainAccords(){
+        Set<String> mainAccords = new HashSet<>();
+        mainAccords.addAll(fragranceRepository.findAllDistinctMainAccord1());
+        mainAccords.addAll(fragranceRepository.findAllDistinctMainAccord2());
+        mainAccords.addAll(fragranceRepository.findAllDistinctMainAccord3());
+        mainAccords.addAll(fragranceRepository.findAllDistinctMainAccord4());
+        mainAccords.addAll(fragranceRepository.findAllDistinctMainAccord5());
+        return List.copyOf(mainAccords);
     }
 }

@@ -34,13 +34,25 @@ public class FragranceController {
     public List<Fragrance> getFragrancesByCountry(@PathVariable String country) {
         return fragranceService.getFragrancesByCountry(country);
     }
+    @GetMapping("/fragrances/country")
+    public List<String> getDistinctCountries() {
+        return fragranceService.getDistinctCountries();
+    }
     @GetMapping("/fragrances/year/{year}")
     public List<Fragrance> getFragrancesByYear(@PathVariable Integer year) {
         return fragranceService.getFragrancesByYear(year);
     }
+    @GetMapping("/fragrances/perfumer")
+    public List<String> getDistinctPerfumers() {
+        return fragranceService.getDistinctPerfumers();
+    }
     @GetMapping("/fragrances/perfumer/{perfumer}")
     public List<Fragrance> getFragrancesByPerfumer(@PathVariable String perfumer) {
         return fragranceService.getFragrancesByPerfumer(perfumer);
+    }
+    @GetMapping("/fragrances/notes")
+    public List<String> getDistinctNotes() {
+        return fragranceService.getDistinctNotes();
     }
     @GetMapping("/fragrances/top-notes/{topNotes}")
     public List<Fragrance> getFragrancesByTopNotes(@PathVariable String topNotes) {
@@ -58,9 +70,12 @@ public class FragranceController {
     public List<Fragrance> getFragrancesByGender(@PathVariable String gender) {
         return fragranceService.getFragrancesByGender(gender);
     }
+    @GetMapping("/fragrances/main-accord")
+    public List<String> getDistinctMainAccords() {
+        return fragranceService.getDistinctMainAccords();
+    }
     @GetMapping("/fragrances/main-accord/{mainAccord}")
     public List<Fragrance> getFragrancesByMainAccord(@PathVariable String mainAccord) {
         return fragranceService.getFragrancesByMainAccord(mainAccord);
     }
-
 }
