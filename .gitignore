@@ -1,2 +1,4 @@
-
 scentanyl/src/main/resources/application.properties
+.idea
+Scentanyl-1
+*.iml
