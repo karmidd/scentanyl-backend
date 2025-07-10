@@ -23,6 +23,8 @@ public class Fragrance {
 
     private String brand;
 
+    private String gender;
+
     @Column(name = "perfumer_name")
     private String perfumerNames;
 
@@ -45,8 +47,5 @@ public class Fragrance {
 
     @Column(name = "image_url")
     private String imageUrl;
-
-
-
 
 }
