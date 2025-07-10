@@ -46,7 +46,7 @@ public class FragranceController {
         return fragranceService.getDistinctAccords();
     }
 
-    @GetMapping({"/accords/{accord}", "/notes/{accord}/"})
+    @GetMapping({"/accords/{accord}", "/accords/{accord}/"})
     public List<Fragrance> getFragrancesByAccord(@PathVariable String accord) {
         return fragranceService.getFragrancesByAccord(accord);
     }
