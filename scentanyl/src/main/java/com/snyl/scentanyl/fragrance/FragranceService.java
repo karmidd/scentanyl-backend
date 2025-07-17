@@ -1,5 +1,13 @@
 package com.snyl.scentanyl.fragrance;
 
+import com.snyl.scentanyl.accord.Accord;
+import com.snyl.scentanyl.accord.AccordRepository;
+import com.snyl.scentanyl.brand.Brand;
+import com.snyl.scentanyl.brand.BrandRepository;
+import com.snyl.scentanyl.note.Note;
+import com.snyl.scentanyl.note.NoteRepository;
+import com.snyl.scentanyl.perfumer.Perfumer;
+import com.snyl.scentanyl.perfumer.PerfumerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +18,42 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FragranceService {
     private final FragranceRepository fragranceRepository;
+    private final BrandRepository brandRepository;
+    private final NoteRepository noteRepository;
+    private final AccordRepository accordRepository;
+    private final PerfumerRepository perfumerRepository;
+
+    public List<Brand> getBrands() {
+        return brandRepository.findAll();
+    }
+
+    public Optional<Brand> getBrandByName(String name) {
+        return brandRepository.findByNameIgnoreCase(name);
+    }
+
+    public List<Note> getNotes() {
+        return noteRepository.findAll();
+    }
+
+    public Optional<Note> getNoteByName(String name) {
+        return noteRepository.findByNameIgnoreCase(name);
+    }
+
+    public List<Accord> getAccords() {
+        return accordRepository.findAll();
+    }
+
+    public Optional<Accord> getAccordByName(String name) {
+        return accordRepository.findByNameIgnoreCase(name);
+    }
+
+    public List<Perfumer> getPerfumers() {
+        return perfumerRepository.findAll();
+    }
+
+    public Optional<Perfumer> getPerfumerByName(String name) {
+        return perfumerRepository.findByNameIgnoreCase(name);
+    }
 
     public List<Fragrance> getFragrances() {
         return fragranceRepository.findAll();
@@ -178,6 +222,12 @@ public class FragranceService {
         }
         return false;
     }
+
+    public Optional<Fragrance> getRandomFragrance() {
+        return fragranceRepository.getRandomFragrance();
+    }
+
+
     /*
     public List<Fragrance> getFragrancesByNames(String name) {
         return fragranceRepository.findAllByName(name);
