@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface FragranceRepository extends JpaRepository<Fragrance, String> {
+public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
     //Optional<Fragrance> findByUrl(String url);
 
     Optional<Fragrance> findByName(String name);
@@ -26,7 +26,7 @@ public interface FragranceRepository extends JpaRepository<Fragrance, String> {
 
     @Query("""
     SELECT f FROM Fragrance f
-    WHERE 
+    WHERE
         LOWER(f.topNotes) LIKE %:note%
         OR LOWER(f.middleNotes) LIKE %:note%
         OR LOWER(f.baseNotes) LIKE %:note%
@@ -85,5 +85,8 @@ public interface FragranceRepository extends JpaRepository<Fragrance, String> {
 
     @Query("SELECT DISTINCT f.uncategorizedNotes FROM Fragrance f WHERE f.uncategorizedNotes IS NOT NULL")
     List<String> findAllDistinctUncategorizedNotes();
+
+    @Query(value = "SELECT * FROM fragrances ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
+    Optional<Fragrance> getRandomFragrance();
 
 }
