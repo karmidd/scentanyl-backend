@@ -23,6 +23,10 @@ public class FragranceService {
         return fragranceRepository.findByBrandIgnoreCaseAndNameIgnoreCase(brand, name);
     }
 
+    public Optional<Fragrance> getFragranceByBrandAndNameAndId(String brand, String name, Long id) {
+        return fragranceRepository.findByBrandIgnoreCaseAndNameIgnoreCaseAndId(brand, name, id);
+    }
+
     public List<Fragrance> getFragrancesByPerfumer(String perfumerNames) {
         List<Fragrance> all = fragranceRepository.findAll();
         return all.stream()

@@ -28,6 +28,11 @@ public class FragranceController {
         return fragranceService.getFragranceByBrandAndName(brand, name);
     }
 
+    @GetMapping({"/fragrances/{brand}/{name}/{id}", "/fragrances/{brand}/{name}/{id}"})
+    public Optional<Fragrance> getFragranceWithId(@PathVariable String brand, @PathVariable String name, @PathVariable Long id) {
+        return fragranceService.getFragranceByBrandAndNameAndId(brand, name, id);
+    }
+
     @GetMapping({"/accords/{accord}", "/accords/{accord}/"})
     public List<Fragrance> getFragrancesByAccord(@PathVariable String accord) {
         return fragranceService.getFragrancesByAccord(accord);

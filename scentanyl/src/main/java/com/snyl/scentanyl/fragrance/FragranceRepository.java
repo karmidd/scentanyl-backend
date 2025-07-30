@@ -14,6 +14,8 @@ public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
 
     Optional<Fragrance> findByBrandIgnoreCaseAndNameIgnoreCase(String brand, String name);
 
+    Optional<Fragrance> findByBrandIgnoreCaseAndNameIgnoreCaseAndId(String brand, String name, Long id);
+
     List<Fragrance> findAllByBrandIgnoreCase(String brand);
 
     @Query("""
