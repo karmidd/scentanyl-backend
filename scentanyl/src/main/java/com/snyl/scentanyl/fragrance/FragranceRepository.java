@@ -10,19 +10,11 @@ import java.util.Optional;
 
 @Repository
 public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
-    //Optional<Fragrance> findByUrl(String url);
-
     Optional<Fragrance> findByName(String name);
 
     Optional<Fragrance> findByBrandIgnoreCaseAndNameIgnoreCase(String brand, String name);
 
-    List<Fragrance> findAllByName(String fragranceName);
-
     List<Fragrance> findAllByBrandIgnoreCase(String brand);
-
-    //List<Fragrance> findAllByGender(String gender);
-
-    List<Fragrance> findAllByPerfumerNamesIgnoreCase(String perfumerNames);
 
     @Query("""
     SELECT f FROM Fragrance f
@@ -58,15 +50,8 @@ public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
 """)
     List<Fragrance> findByAccordsContaining(@Param("accord") String accord);
 
-    //List<Fragrance> findAllByCountry(String country);
-
-    //List<Fragrance> findAllByYear(Integer year);
-
     @Query("SELECT DISTINCT f.brand FROM Fragrance f WHERE f.brand IS NOT NULL")
     List<String> findAllDistinctBrands();
-
-    //@Query("SELECT DISTINCT f.country FROM Fragrance f WHERE f.country IS NOT NULL")
-    //List<String> findAllDistinctCountries();
 
     @Query("SELECT DISTINCT f.perfumerNames FROM Fragrance f WHERE f.perfumerNames IS NOT NULL")
     List<String> findAllDistinctPerfumers();

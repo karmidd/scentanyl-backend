@@ -1,9 +1,5 @@
 package com.snyl.scentanyl.fragrance;
 
-import com.snyl.scentanyl.accord.Accord;
-import com.snyl.scentanyl.brand.Brand;
-import com.snyl.scentanyl.note.Note;
-import com.snyl.scentanyl.perfumer.Perfumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,16 +18,6 @@ public class FragranceController {
         return fragranceService.getFragrances();
     }
 
-    @GetMapping({"/brands", "/brands/"})
-    public List<Brand> getBrands() {
-        return fragranceService.getBrands();
-    }
-
-    @GetMapping({"/brands/{brand}/info", "/brands/{brand}/info"})
-    public Optional<Brand> getBrand(@PathVariable String brand) {
-        return fragranceService.getBrandByName(brand);
-    }
-
     @GetMapping({"/brands/{brand}", "/brands/{brand}/"})
     public List<Fragrance> getFragrancesByBrand(@PathVariable String brand) {
         return fragranceService.getFragrancesByBrand(brand);
@@ -42,24 +28,9 @@ public class FragranceController {
         return fragranceService.getFragranceByBrandAndName(brand, name);
     }
 
-    @GetMapping({"/perfumers", "/perfumers/"})
-    public List<Perfumer> getPerfumers() {
-        return fragranceService.getPerfumers();
-    }
-
-    @GetMapping({"/accords", "/accords/"})
-    public List<Accord> getAccords() {
-        return fragranceService.getAccords();
-    }
-
     @GetMapping({"/accords/{accord}", "/accords/{accord}/"})
     public List<Fragrance> getFragrancesByAccord(@PathVariable String accord) {
         return fragranceService.getFragrancesByAccord(accord);
-    }
-
-    @GetMapping({"/notes", "/notes/"})
-    public List<Note> getNotes() {
-        return fragranceService.getNotes();
     }
 
     @GetMapping({"/perfumers/{perfumerNames}", "/perfumers/{perfumerNames}/"})
