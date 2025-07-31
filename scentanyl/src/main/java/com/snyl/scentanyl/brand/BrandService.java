@@ -1,5 +1,6 @@
 package com.snyl.scentanyl.brand;
 
+import com.snyl.scentanyl.fragrance.Fragrance;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,9 @@ public class BrandService {
 
     public Optional<Brand> getBrandByName(String name) {
         return brandRepository.findByNameIgnoreCase(name);
+    }
+
+    public Optional<Brand> getRandomBrand() {
+        return brandRepository.getRandomBrand();
     }
 }

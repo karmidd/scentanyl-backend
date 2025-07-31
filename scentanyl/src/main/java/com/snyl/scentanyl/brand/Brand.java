@@ -1,13 +1,10 @@
 package com.snyl.scentanyl.brand;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@Table(name="brands_table")
+@Table(name="brands")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,5 +20,10 @@ public class Brand {
 
     private String parent;
 
-    private String image;
+    private String img;
+
+    private String url;
+
+    @Column(name = "fragrance_count")
+    private int fragranceCount;
 }

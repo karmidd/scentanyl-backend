@@ -63,7 +63,7 @@ public class FragranceController {
         return fragranceService.getFragrancesByBaseNote(note);
     }
 
-    @GetMapping({"/random", "/random/"})
+    @GetMapping({"/random-frag", "/random-frag/"})
     public Optional<Fragrance> getRandomFragrance() {
         return fragranceService.getRandomFragrance();
     }

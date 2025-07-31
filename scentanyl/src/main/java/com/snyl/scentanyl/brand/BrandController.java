@@ -1,5 +1,6 @@
 package com.snyl.scentanyl.brand;
 
+import com.snyl.scentanyl.fragrance.Fragrance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,5 +22,10 @@ public class BrandController {
     @GetMapping({"/brands/{brand}/info", "/brands/{brand}/info"})
     public Optional<Brand> getBrand(@PathVariable String brand) {
         return brandService.getBrandByName(brand);
+    }
+
+    @GetMapping({"/random-brand", "/random-brand/"})
+    public Optional<Brand> getRandomBrand() {
+        return brandService.getRandomBrand();
     }
 }
