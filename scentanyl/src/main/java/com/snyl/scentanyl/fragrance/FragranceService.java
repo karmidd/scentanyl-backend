@@ -133,4 +133,7 @@ public class FragranceService {
         return fragranceRepository.getRandomFragrance();
     }
 
+    public List<Fragrance> getRandomFragrances(int count) {
+        return fragranceRepository.getRandomFragrances(count);
+    }
 }

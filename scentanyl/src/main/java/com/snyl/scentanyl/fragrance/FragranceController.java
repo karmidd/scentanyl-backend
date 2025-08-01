@@ -1,13 +1,13 @@
 package com.snyl.scentanyl.fragrance;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
 @RestController
+@RequestMapping("/api")
 public class FragranceController {
 
     @Autowired
@@ -64,7 +64,14 @@ public class FragranceController {
     }
 
     @GetMapping({"/random-frag", "/random-frag/"})
-    public Optional<Fragrance> getRandomFragrance() {
-        return fragranceService.getRandomFragrance();
+    public ResponseEntity<?> getRandomFragrance(@RequestParam(defaultValue = "1") int count) {
+        if (count <= 1) {
+            Optional<Fragrance> frag = fragranceService.getRandomFragrance();
+            return frag.map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.notFound().build());
+        } else {
+            List<Fragrance> list = fragranceService.getRandomFragrances(count);
+            return ResponseEntity.ok(list);
+        }
     }
 }

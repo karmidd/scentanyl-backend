@@ -2,6 +2,7 @@ package com.snyl.scentanyl.brand;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 
     @Query(value = "SELECT * FROM brands ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
     Optional<Brand> getRandomBrand();
+
+    @Query(value = "SELECT * FROM brands ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
+    List<Brand> getRandomBrands(@Param("count") int count);
 
     List<Brand> findAllByCountry(String country);
 

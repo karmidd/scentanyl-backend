@@ -22,4 +22,8 @@ public class BrandService {
     public Optional<Brand> getRandomBrand() {
         return brandRepository.getRandomBrand();
     }
+
+    public List<Brand> getRandomBrands(int count) {
+        return brandRepository.getRandomBrands(count);
+    }
 }

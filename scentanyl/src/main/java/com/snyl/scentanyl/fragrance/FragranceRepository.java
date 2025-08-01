@@ -76,4 +76,7 @@ public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
     @Query(value = "SELECT * FROM fragrances ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
     Optional<Fragrance> getRandomFragrance();
 
+    @Query(value = "SELECT * FROM fragrances ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
+    List<Fragrance> getRandomFragrances(@Param("count") int count);
+
 }
