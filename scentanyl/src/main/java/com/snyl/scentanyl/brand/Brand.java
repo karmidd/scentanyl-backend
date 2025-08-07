@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="brands")
+@Table(name="brands_mat_view")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,7 +20,7 @@ public class Brand {
 
     private String parent;
 
-    private String img;
+    private String logo;
 
     private String url;
 

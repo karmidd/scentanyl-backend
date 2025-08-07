@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="accords")
+@Table(name="accords_mat_view")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

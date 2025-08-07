@@ -13,10 +13,10 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 
     Optional<Brand> findByNameIgnoreCase(String name);
 
-    @Query(value = "SELECT * FROM brands ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM brands_mat_view ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
     Optional<Brand> getRandomBrand();
 
-    @Query(value = "SELECT * FROM brands ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
+    @Query(value = "SELECT * FROM brands_mat_view ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
     List<Brand> getRandomBrands(@Param("count") int count);
 
     List<Brand> findAllByCountry(String country);

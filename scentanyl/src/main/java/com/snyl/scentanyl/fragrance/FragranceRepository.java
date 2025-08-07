@@ -73,10 +73,10 @@ public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
     @Query("SELECT DISTINCT f.uncategorizedNotes FROM Fragrance f WHERE f.uncategorizedNotes IS NOT NULL")
     List<String> findAllDistinctUncategorizedNotes();
 
-    @Query(value = "SELECT * FROM fragrances ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM fragrances_table ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
     Optional<Fragrance> getRandomFragrance();
 
-    @Query(value = "SELECT * FROM fragrances ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
+    @Query(value = "SELECT * FROM fragrances_table ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
     List<Fragrance> getRandomFragrances(@Param("count") int count);
 
 }

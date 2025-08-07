@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="perfumers")
+@Table(name="perfumers_mat_view")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

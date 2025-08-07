@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="notes")
+@Table(name="notes_mat_view")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
