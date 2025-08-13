@@ -24,6 +24,6 @@ public class Brand {
 
     private String url;
 
-    @Column(name = "fragrance_count")
-    private int fragranceCount;
+    @Column(name = "total_fragrances")
+    private int totalFragrances;
 }

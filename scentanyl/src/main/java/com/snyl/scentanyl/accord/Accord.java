@@ -19,6 +19,6 @@ public class Accord {
 
     private String name;
 
-    @Column(name = "total_appearances")
-    private int totalAppearances;
+    @Column(name = "total_fragrances")
+    private int totalFragrances;
 }

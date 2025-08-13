@@ -31,6 +31,6 @@ public class Note {
     @Column(name = "uncategorized_count")
     private int uncategorizedCount;
 
-    @Column(name = "total_appearances")
-    private int totalAppearances;
+    @Column(name = "total_fragrances")
+    private int totalFragrances;
 }

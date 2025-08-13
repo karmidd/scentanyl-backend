@@ -21,6 +21,6 @@ public class Perfumer {
 
     private String image;
 
-    @Column(name = "total_contributions")
-    private int totalContributions;
+    @Column(name = "total_fragrances")
+    private int totalFragrances;
 }
