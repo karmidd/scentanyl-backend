@@ -38,9 +38,9 @@ public class FragranceController {
         return fragranceService.getFragrancesByAccord(accord);
     }
 
-    @GetMapping({"/perfumers/{perfumerNames}", "/perfumers/{perfumerNames}/"})
-    public List<Fragrance> getFragrancesByPerfumers(@PathVariable String perfumerNames) {
-        return fragranceService.getFragrancesByPerfumer(perfumerNames);
+    @GetMapping({"/perfumers/{perfumerName}", "/perfumers/{perfumerName}/"})
+    public List<Fragrance> getFragrancesByPerfumer(@PathVariable String perfumerName) {
+        return fragranceService.getFragrancesByPerfumer(perfumerName);
     }
 
     @GetMapping({"/notes/{note}", "/notes/{note}/"})

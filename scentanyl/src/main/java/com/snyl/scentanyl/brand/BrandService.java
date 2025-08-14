@@ -1,6 +1,5 @@
 package com.snyl.scentanyl.brand;
 
-import com.snyl.scentanyl.fragrance.Fragrance;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

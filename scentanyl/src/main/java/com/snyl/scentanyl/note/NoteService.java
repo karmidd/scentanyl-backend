@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class NoteService {
@@ -12,9 +11,5 @@ public class NoteService {
 
     public List<Note> getNotes() {
         return noteRepository.findAll();
-    }
-
-    public Optional<Note> getNoteByName(String name) {
-        return noteRepository.findByNameIgnoreCase(name);
     }
 }

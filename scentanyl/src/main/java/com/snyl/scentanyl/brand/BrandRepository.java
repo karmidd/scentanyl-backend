@@ -18,9 +18,4 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
 
     @Query(value = "SELECT * FROM brands_mat_view ORDER BY RANDOM() LIMIT :count", nativeQuery = true)
     List<Brand> getRandomBrands(@Param("count") int count);
-
-    List<Brand> findAllByCountry(String country);
-
-    List<Brand> findAllByParent(String brandParent);
-
 }
