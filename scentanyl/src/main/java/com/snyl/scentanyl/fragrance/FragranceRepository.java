@@ -18,25 +18,25 @@ public interface FragranceRepository extends JpaRepository<Fragrance, Long> {
 
     @Query("""
     SELECT f FROM Fragrance f
-    WHERE LOWER(f.topNotes) LIKE %:note%
+    WHERE LOWER(f.topNotes) LIKE LOWER(CONCAT('%', :note, '%'))
 """)
     List<Fragrance> findByTopNotesContaining(@Param("note") String note);
 
     @Query("""
     SELECT f FROM Fragrance f
-    WHERE LOWER(f.middleNotes) LIKE %:note%
+    WHERE LOWER(f.middleNotes) LIKE LOWER(CONCAT('%', :note, '%'))
 """)
     List<Fragrance> findByMiddleNotesContaining(@Param("note") String note);
 
     @Query("""
     SELECT f FROM Fragrance f
-    WHERE LOWER(f.baseNotes) LIKE %:note%
+    WHERE LOWER(f.baseNotes) LIKE LOWER(CONCAT('%', :note, '%'))
 """)
     List<Fragrance> findByBaseNotesContaining(@Param("note") String note);
 
     @Query("""
     SELECT f FROM Fragrance f
-    WHERE LOWER(f.accords) LIKE %:accord%
+    WHERE LOWER(f.accords) LIKE LOWER(CONCAT('%', :accord, '%'))
 """)
     List<Fragrance> findByAccordsContaining(@Param("accord") String accord);
 

@@ -23,6 +23,7 @@ public class Fragrance {
 
     private String gender;
 
+    @Column(name = "`year`")
     private Long year;
 
     @Column(name = "perfumer_name")
