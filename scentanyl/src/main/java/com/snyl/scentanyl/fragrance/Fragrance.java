@@ -1,5 +1,6 @@
 package com.snyl.scentanyl.fragrance;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Fragrance {
     @Column(name = "perfumer_name")
     private String perfumerNames;
 
+    @JsonIgnore
     @Column(name = "perfumer_image")
     private String perfumerImages;
 
