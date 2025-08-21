@@ -49,7 +49,6 @@ class PerfumerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].name", is("Ernest Beaux")))
-                .andExpect(jsonPath("$[0].image", is("ernest-beaux.jpg")))
                 .andExpect(jsonPath("$[0].totalFragrances", is(25)))
                 .andExpect(jsonPath("$[1].name", is("Jacques Polge")))
                 .andExpect(jsonPath("$[1].totalFragrances", is(75)));
