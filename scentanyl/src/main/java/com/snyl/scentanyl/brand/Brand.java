@@ -1,5 +1,6 @@
 package com.snyl.scentanyl.brand;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class Brand {
 
     private String parent;
 
+    @JsonIgnore
     private String logo;
 
     private String url;
