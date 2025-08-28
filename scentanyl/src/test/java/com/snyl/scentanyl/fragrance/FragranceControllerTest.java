@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.any;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,25 +31,35 @@ class FragranceControllerTest {
     private FragranceService fragranceService;
 
     @Test
-    @DisplayName("GET /api/fragrances should return all fragrances")
-    void getFragrances_ShouldReturnAllFragrances() throws Exception {
+    @DisplayName("GET /api/fragrances should return paginated fragrances")
+    void getFragrances_ShouldReturnPaginatedFragrances() throws Exception {
         // Given
         Fragrance fragrance = new Fragrance();
         fragrance.setId(1L);
         fragrance.setName("No. 5");
         fragrance.setBrand("Chanel");
-        
+
         List<Fragrance> fragrances = Collections.singletonList(fragrance);
-        when(fragranceService.getFragrances()).thenReturn(fragrances);
+        Page<Fragrance> page = new PageImpl<>(fragrances, PageRequest.of(0, 50), 1);
+
+        when(fragranceService.getFragrancesFiltered(
+                anyInt(), anyInt(), any(), any(), any(), any(), any(), any(),
+                any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+        )).thenReturn(page);
 
         // When & Then
         mockMvc.perform(get("/api/fragrances"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name", is("No. 5")))
-                .andExpect(jsonPath("$[0].brand", is("Chanel")));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].name", is("No. 5")))
+                .andExpect(jsonPath("$.content[0].brand", is("Chanel")))
+                .andExpect(jsonPath("$.totalElements", is(1)))
+                .andExpect(jsonPath("$.totalPages", is(1)));
 
-        verify(fragranceService, times(1)).getFragrances();
+        verify(fragranceService, times(1)).getFragrancesFiltered(
+                anyInt(), anyInt(), any(), any(), any(), any(), any(), any(),
+                any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+        );
     }
 
     @Test
@@ -117,15 +131,25 @@ class FragranceControllerTest {
         fragrance.setAccords("Floral, Fresh");
 
         List<Fragrance> fragrances = Collections.singletonList(fragrance);
-        when(fragranceService.getFragrancesByAccord("Floral")).thenReturn(fragrances);
+        Page<Fragrance> page = new PageImpl<>(fragrances, PageRequest.of(0, 50), 1);
+
+        when(fragranceService.getFragrancesByAccordPaginated(
+                eq("Floral"), anyInt(), anyInt(), any(), any(), any(), any(), any(), any(),
+                any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+        )).thenReturn(page);
 
         // When & Then
         mockMvc.perform(get("/api/accords/Floral"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].accords", containsString("Floral")));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].accords", containsString("Floral")))
+                .andExpect(jsonPath("$.totalElements", is(1)))
+                .andExpect(jsonPath("$.totalPages", is(1)));
 
-        verify(fragranceService, times(1)).getFragrancesByAccord("Floral");
+        verify(fragranceService, times(1)).getFragrancesByAccordPaginated(
+                eq("Floral"), anyInt(), anyInt(), any(), any(), any(), any(), any(), any(),
+                any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+        );
     }
 
     @Test
@@ -155,14 +179,25 @@ class FragranceControllerTest {
         fragrance.setTopNotes("Rose, Jasmine");
 
         List<Fragrance> fragrances = Collections.singletonList(fragrance);
-        when(fragranceService.getFragrancesByNote("Rose")).thenReturn(fragrances);
+        Page<Fragrance> page = new PageImpl<>(fragrances, PageRequest.of(0, 50), 1);
+
+        when(fragranceService.getFragrancesByNotePaginated(
+                eq("Rose"), any(), anyInt(), anyInt(), any(), any(), any(), any(), any(), any(),
+                any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+        )).thenReturn(page);
 
         // When & Then
         mockMvc.perform(get("/api/notes/Rose"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].topNotes", containsString("Rose")))
+                .andExpect(jsonPath("$.totalElements", is(1)))
+                .andExpect(jsonPath("$.totalPages", is(1)));
 
-        verify(fragranceService, times(1)).getFragrancesByNote("Rose");
+        verify(fragranceService, times(1)).getFragrancesByNotePaginated(
+                eq("Rose"), any(), anyInt(), anyInt(), any(), any(), any(), any(), any(), any(),
+                any(), any(), any(), any(), any(), any(), any(), any(), any(), any(), any()
+        );
     }
 
     @Test

@@ -111,32 +111,32 @@ class FragranceServiceTest {
     void getFragrancesByPerfumer_ShouldReturnPerfumerFragrances() {
         // Given
         testFragrance.setPerfumerNames("Ernest Beaux|Henri Robert");
-        List<Fragrance> allFragrances = Collections.singletonList(testFragrance);
-        when(fragranceRepository.findAll()).thenReturn(allFragrances);
+        when(fragranceRepository.findByPerfumer("Ernest Beaux"))
+                .thenReturn(Collections.singletonList(testFragrance));
 
         // When
         List<Fragrance> result = fragranceService.getFragrancesByPerfumer("Ernest Beaux");
 
         // Then
         assertEquals(1, result.size());
-        assertTrue(result.getFirst().getPerfumerNames().contains("Ernest Beaux"));
-        verify(fragranceRepository, times(1)).findAll();
+        assertTrue(result.get(0).getPerfumerNames().contains("Ernest Beaux"));
+        verify(fragranceRepository, times(1)).findByPerfumer("Ernest Beaux");
     }
 
     @Test
     @DisplayName("Should return fragrances by note")
     void getFragrancesByNote_ShouldReturnFragrancesWithNote() {
         // Given
-        List<Fragrance> allFragrances = Collections.singletonList(testFragrance);
-        when(fragranceRepository.findAll()).thenReturn(allFragrances);
+        when(fragranceRepository.findByAnyNoteContaining("rose"))  // lowercase "rose"
+                .thenReturn(Collections.singletonList(testFragrance));
 
         // When
         List<Fragrance> result = fragranceService.getFragrancesByNote("Rose");
 
         // Then
         assertEquals(1, result.size());
-        assertTrue(result.getFirst().getMiddleNotes().contains("Rose"));
-        verify(fragranceRepository, times(1)).findAll();
+        assertTrue(result.get(0).getMiddleNotes().contains("Rose"));
+        verify(fragranceRepository, times(1)).findByAnyNoteContaining("rose");  // lowercase "rose"
     }
 
     @Test
@@ -233,31 +233,29 @@ class FragranceServiceTest {
     @DisplayName("Should handle null perfumer names")
     void getFragrancesByPerfumer_ShouldHandleNullPerfumerNames() {
         // Given
-        Fragrance fragWithNullPerfumer = new Fragrance();
-        fragWithNullPerfumer.setPerfumerNames(null);
-        List<Fragrance> allFragrances = Collections.singletonList(fragWithNullPerfumer);
-        when(fragranceRepository.findAll()).thenReturn(allFragrances);
+        when(fragranceRepository.findByPerfumer("Ernest Beaux"))
+                .thenReturn(Collections.emptyList());  // The query filters out null and N/A
 
         // When
         List<Fragrance> result = fragranceService.getFragrancesByPerfumer("Ernest Beaux");
 
         // Then
         assertEquals(0, result.size());
+        verify(fragranceRepository, times(1)).findByPerfumer("Ernest Beaux");
     }
 
     @Test
     @DisplayName("Should handle N/A perfumer names")
     void getFragrancesByPerfumer_ShouldIgnoreNAPerfumerNames() {
         // Given
-        Fragrance fragWithNA = new Fragrance();
-        fragWithNA.setPerfumerNames("N/A");
-        List<Fragrance> allFragrances = Collections.singletonList(fragWithNA);
-        when(fragranceRepository.findAll()).thenReturn(allFragrances);
+        when(fragranceRepository.findByPerfumer("Ernest Beaux"))
+                .thenReturn(Collections.emptyList());  // The query filters out N/A
 
         // When
         List<Fragrance> result = fragranceService.getFragrancesByPerfumer("Ernest Beaux");
 
         // Then
         assertEquals(0, result.size());
+        verify(fragranceRepository, times(1)).findByPerfumer("Ernest Beaux");
     }
 }
