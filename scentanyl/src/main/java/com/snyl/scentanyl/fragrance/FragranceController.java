@@ -14,11 +14,6 @@ public class FragranceController {
     @Autowired
     private FragranceService fragranceService;
 
-    @GetMapping({"/all-fragrances", "/all-fragrances/"})
-    public List<Fragrance> getFragrances() {
-        return fragranceService.getFragrances();
-    }
-
     @GetMapping({"/fragrances", "/fragrances/"})
     public Page<Fragrance> getFragrancesPaginated(
             @RequestParam(defaultValue = "0") int page,
