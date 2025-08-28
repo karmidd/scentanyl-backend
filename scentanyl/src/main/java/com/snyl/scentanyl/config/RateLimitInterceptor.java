@@ -38,7 +38,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
 
     private Bucket createNewBucket(String clientIp) {
         return Bucket.builder()
-                .addLimit(Bandwidth.classic(40, Refill.intervally(40, Duration.ofMinutes(3))))
+                .addLimit(Bandwidth.classic(75, Refill.intervally(75, Duration.ofMinutes(2))))
                 .build();
     }
 
@@ -53,7 +53,7 @@ public class RateLimitInterceptor implements HandlerInterceptor {
     public void cleanupOldEntries() {
         // Remove buckets that haven't been used in the last hour
         buckets.entrySet().removeIf(entry ->
-                entry.getValue().getAvailableTokens() >= 40
+                entry.getValue().getAvailableTokens() >= 75
         );
     }
 }
