@@ -36,6 +36,9 @@ public class FragranceController {
             @RequestParam(required = false) String notes,
             @RequestParam(required = false) String excludedNotes
     ) {
+        if (size > 50) {
+            size = 50;
+        }
         return fragranceService.getFragrancesFiltered(
                 page, size, search, gender, minYear, maxYear, sortBy, sortDirection,
                 advancedMode, accords, excludedAccords, topNotes, middleNotes, baseNotes,
@@ -91,6 +94,9 @@ public class FragranceController {
             @RequestParam(required = false) String notes,
             @RequestParam(required = false) String excludedNotes
     ) {
+        if (size > 50) {
+            size = 50;
+        }
         return fragranceService.getFragrancesByAccordPaginated(
                 accord, page, size, search, gender, minYear, maxYear, sortBy, sortDirection,
                 advancedMode, accords, excludedAccords, topNotes, middleNotes, baseNotes,
@@ -127,6 +133,9 @@ public class FragranceController {
             @RequestParam(required = false) String notes,
             @RequestParam(required = false) String excludedNotes
     ) {
+        if (size > 50) {
+            size = 50;
+        }
         return fragranceService.getFragrancesByNotePaginated(
                 note, position, page, size, search, gender, minYear, maxYear, sortBy, sortDirection,
                 advancedMode, accords, excludedAccords, topNotes, middleNotes, baseNotes,

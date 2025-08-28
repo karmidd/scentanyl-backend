@@ -30,7 +30,7 @@ class NoteControllerTest {
     void getNotes_ShouldReturnAllNotes() throws Exception {
         // Given
         Note note1 = new Note();
-        // Don't set ID - it's auto-generated
+        // ID is auto-generated
         note1.setName("Rose");
         note1.setTopCount(50);
         note1.setMiddleCount(120);
@@ -39,7 +39,7 @@ class NoteControllerTest {
         note1.setTotalFragrances(205);
 
         Note note2 = new Note();
-        // Don't set ID - it's auto-generated
+        // ID is auto-generated
         note2.setName("Vanilla");
         note2.setTopCount(10);
         note2.setMiddleCount(40);

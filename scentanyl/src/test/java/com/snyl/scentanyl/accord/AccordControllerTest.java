@@ -30,12 +30,12 @@ class AccordControllerTest {
     void getAccords_ShouldReturnAllAccords() throws Exception {
         // Given
         Accord accord1 = new Accord();
-        // Don't set ID - it's auto-generated
+        // ID is auto-generated
         accord1.setName("Floral");
         accord1.setTotalFragrances(500);
 
         Accord accord2 = new Accord();
-        // Don't set ID - it's auto-generated
+        // ID is auto-generated
         accord2.setName("Woody");
         accord2.setTotalFragrances(350);
 

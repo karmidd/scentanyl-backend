@@ -88,7 +88,7 @@ class BrandControllerTest {
         // When & Then
         mockMvc.perform(get("/api/brands/NonExistent/info"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("null"));  // Changed from "" to "null"
+                .andExpect(content().string("null"));
 
         verify(brandService, times(1)).getBrandByName("NonExistent");
     }

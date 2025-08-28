@@ -30,7 +30,7 @@ class NoteServiceTest {
     @BeforeEach
     void setUp() {
         testNote1 = new Note();
-        // Don't set ID - it's auto-generated
+        // ID is auto-generated
         testNote1.setName("Rose");
         testNote1.setTopCount(50);
         testNote1.setMiddleCount(120);
@@ -39,7 +39,7 @@ class NoteServiceTest {
         testNote1.setTotalFragrances(205);
 
         testNote2 = new Note();
-        // Don't set ID - it's auto-generated
+        // ID is auto-generated
         testNote2.setName("Vanilla");
         testNote2.setTopCount(10);
         testNote2.setMiddleCount(40);
