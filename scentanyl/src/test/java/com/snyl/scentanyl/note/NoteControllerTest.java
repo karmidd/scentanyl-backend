@@ -1,11 +1,14 @@
 package com.snyl.scentanyl.note;
 
+import com.snyl.scentanyl.config.TokenService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
 
-@WebMvcTest(NoteController.class)
+@WebMvcTest(value = NoteController.class, excludeFilters = @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = com.snyl.scentanyl.config.TokenFilter.class))
 class NoteControllerTest {
 
     @Autowired
@@ -24,6 +27,9 @@ class NoteControllerTest {
 
     @MockitoBean
     private NoteService noteService;
+
+    @MockitoBean
+    private TokenService tokenService;
 
     @Test
     @DisplayName("GET /api/notes should return all notes")

@@ -1,5 +1,6 @@
 package com.snyl.scentanyl.fragrance;
 
+import com.snyl.scentanyl.config.TokenService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
 
-@WebMvcTest(FragranceController.class)
+@WebMvcTest(value = FragranceController.class, excludeFilters = @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = com.snyl.scentanyl.config.TokenFilter.class))
 class FragranceControllerTest {
 
     @Autowired
@@ -29,6 +32,9 @@ class FragranceControllerTest {
 
     @MockitoBean
     private FragranceService fragranceService;
+
+    @MockitoBean
+    private TokenService tokenService;
 
     @Test
     @DisplayName("GET /api/fragrances should return paginated fragrances")

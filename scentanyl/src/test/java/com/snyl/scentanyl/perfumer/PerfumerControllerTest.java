@@ -1,11 +1,14 @@
 package com.snyl.scentanyl.perfumer;
 
+import com.snyl.scentanyl.config.TokenService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.*;
 
-@WebMvcTest(PerfumerController.class)
+@WebMvcTest(value = PerfumerController.class, excludeFilters = @Filter(type = FilterType.ASSIGNABLE_TYPE, classes = com.snyl.scentanyl.config.TokenFilter.class))
 class PerfumerControllerTest {
 
     @Autowired
@@ -24,6 +27,9 @@ class PerfumerControllerTest {
 
     @MockitoBean
     private PerfumerService perfumerService;
+
+    @MockitoBean
+    private TokenService tokenService;
 
     @Test
     @DisplayName("GET /api/perfumers should return all perfumers")
